@@ -4,16 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/index.js"></script>
+    <script defer src="./js/index.js"></script>
     <title>Document</title>
 </head>
 <body>
     <head>
-        <h1>SIMULADOR DE PRESTAMOS PERSONALES</h1>
-        <p>Bienvenido al simulador de prestamos personales</p>
+        <nav>
+            <h1>Simulador de Prestamos Personales</h1>
+        </nav>
     </head>
     <main>
+        <section>
+            <p>Bienvenido al simular de prestamos personales.</p>
+        </section>
+        <section>
+            <article>
+                <div>
+                    <label for="userName"></label>
+                    <input type="text" name="userName" id="userName" placeholder="Ingrese el nombre">   
+                </div>
+                <div>
+                    <label for="userSurname"></label>
+                    <input type="text" name="userSurname" id="userSurname" placeholder="Ingrese el apellido">
+                </div>
+                <div>
+                    <label for="userMonto"></label>
+                    <input type="number" name="userMonto" id="userMonto" placeholder="Ingrese el monto: ej 1000">
+                </div>
+                <div>
+                    <label for="userCuotas">Cuotas</label>
+                    <select name="userCuotas" id="userCuotas">
+                        <option value="" disabled selected> Ninguna </option>
+                    </select>
+                </div>
+                <div>
+                    <p>Presione Enter o haga click en calcular</p>
+                    <button id="btnCalcular">calcular</button>
+                </div>
+            </article>
+        </section>
+        <section id="mostrar">
 
+        </section>
     </main>
     <footer>
         
