@@ -9,30 +9,19 @@ let nombre ;
 let surname ;
 let monto ;
 let cuotaSelecionada;
-inputName.addEventListener("keydown", event => {
-        if(event.key == "Enter"){ //Tecla enter
-            console.log('hola ney');
-        }
-    }
-);
-//OBJETO
 
-// class datosDelSolicitante {
-//     constructor (nombre,apellido,monto,cuotas){
-//         this.nombre = nombre;
-//         this.apellido = apellido;
-//         this.monto = monto;
-//         this.cuotas = cuotas;
-//     }
-
-// }
 
 // ARRAY
 
-
-// const solicitante = [];
-
 const opcionesDeCuotas = [6, 12, 18, 24, 30, 36];
+
+//Ciclos
+
+for (opciones of opcionesDeCuotas) {
+    let option = document.createElement("option");
+    option.innerHTML=opciones;
+    cuotas.appendChild(option);
+}
 
 //funcuiones
 
@@ -105,24 +94,6 @@ function mostrarDatos() {
                                     <p>por mes:${interes(cuotaSelecionada)}`
         }
 }
-
-//Ciclos
-
-for (opciones of opcionesDeCuotas) {
-    let option = document.createElement("option");
-    option.innerHTML=opciones;
-    cuotas.appendChild(option);
-}
-
-
-
-
-// for (const calcularCuota of solicitante) {
-//     let cuotas = calcularCuota.cuotas;
-//     let monto = calcularCuota.monto;
-//     
-// }
-
 
 
 //llamar funciones
