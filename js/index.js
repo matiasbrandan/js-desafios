@@ -5,17 +5,12 @@ let inputSurname = document.getElementById("userSurname");
 let inputMonto = document.getElementById ("userMonto");
 let cuotas = document.getElementById ("userCuotas");
 let btnCalcular = document.getElementById("btnCalcular");
-let nombre ;
-let surname ;
-let monto ;
-let cuotaSelecionada;
+let btnUltima = document.getElementById ("btnUltima");
+let datosJson;
 
-
-// ARRAY
-
+const datosGuardados = [];
 const opcionesDeCuotas = [6, 12, 18, 24, 30, 36];
 
-//Ciclos
 
 for (opciones of opcionesDeCuotas) {
     let option = document.createElement("option");
@@ -23,48 +18,63 @@ for (opciones of opcionesDeCuotas) {
     cuotas.appendChild(option);
 }
 
-//funcuiones
+inputName.onchange = () => {
+    inputName.value;
+}
+inputSurname.onchange = () => {
+    inputSurname.value;
+}
+inputMonto.onchange = () => {
+    parseInt (inputMonto.value);
+}
+cuotas.onchange = () => {
+    cuotas.value;
+}
 
-function mostrar () {
+function datosUser() { if (inputName.value !== "" && inputSurname.value !== "" && inputMonto.value >= 1000 && cuotas.value !== "Ninguna" ){ 
+        return true
+    } else {
+        return false
+    } 
+}
 
-    inputName.onchange = () => {
-        nombre=inputName.value;
+function guardarDatos () {
+    if (datosUser ()){
+        datosGuardados.push (new datos (inputName.value, inputSurname.value, inputMonto.value, cuotas.value))
     }
-    inputSurname.onchange = () => {
-        surname=inputSurname.value;
+}
+
+class datos{
+    constructor(nombre, surname, monto, cuotas) {
+        this.nombre = nombre;
+        this.surname   = surname;
+        this.monto  = monto;
+        this.cuotas = cuotas;
     }
-    inputMonto.onchange = () => {
-        monto=parseInt (inputMonto.value);
-    }
-    cuotas.onchange = () => {
-        cuotaSelecionada=cuotas.value;
-    }
-    
 }
 
 function interes (){
     for (porMes of opcionesDeCuotas){
-        switch (cuotaSelecionada) {
+        switch (cuotas.value) {
                     case "6":
-                        let primera = monto + (monto * 0.05);
-                        return primera;
+                        let primera =inputMonto.value * 1.2;
+                        return primera / 6;
                     case "12":
-                        let segunda = monto + (monto * 0.1);
-                        return segunda;
+                        let segunda = inputMonto.value * 1.5;
+                        return segunda / 12;
                     case "18":
-                        let tercera = monto + (monto * 0.25);
-                        return tercera;
+                        let tercera = inputMonto.value * 1.7;
+                        return tercera / 18;
                     case "24":
-                        let cuarta = monto + (monto * 0.35);
-                        return cuarta;
+                        let cuarta = inputMonto.value * 1.9;
+                        return cuarta / 24;
                     case "30":
-                        let quinta = monto + (monto * 0.4 );
-                        return quinta;
+                        let quinta = inputMonto.value * 2.2 ;
+                        return quinta / 30;
                     case "36":
-                        let sexta = monto + (monto * 0.5 );
-                        return sexta;
+                        let sexta = inputMonto.value * 2.7 ;
+                        return sexta / 36;
                     default:
-                        console.log ("no es una cantidad de cuotas validas");
                         break
                 }
     }
@@ -72,30 +82,30 @@ function interes (){
 
 
 
-
 function mostrarDatos() {
-        let body = document.body
         let seccion = document.getElementById("mostrar")
-        body.addEventListener("keydown", e => {
-                if (e.key == "Enter") {
-                    seccion.innerHTML+= `<p>nombre:${nombre}</p>
-                                    <p>apellido:${surname}</p>
-                                    <p>monto:${monto}</p>
-                                    <p>cuotas${cuotaSelecionada}</p>
-                                    <p>por mes:${interes(cuotaSelecionada)}`
-                }
-            }
-        )
+        let divDatos = document.getElementById("datosGuardados")
         btnCalcular.onclick = () => {
-            seccion.innerHTML+= `<p>nombre:${nombre}</p>
-                                    <p>apellido:${surname}</p>
-                                    <p>monto:${monto}</p>
-                                    <p>cuotas${cuotaSelecionada}</p>
-                                    <p>por mes:${interes(cuotaSelecionada)}`
+            seccion.innerHTML = `<p>nombre:${inputName.value}</p>
+                                    <p>apellido:${inputSurname.value}</p>
+                                    <p>monto:${inputMonto.value}</p>
+                                    <p>cuotas:${cuotas.value}</p>
+                                    <p>total con interes:${parseInt(inputMonto.value) + interes(cuotas.value)}</p>
+                                    <p>por mes:${interes(cuotas.value).toFixed(2)}`
+            guardarDatos ();
+            localStorage.setItem ("ultima simulacion", JSON.stringify(datosGuardados));
+            btnUltima.classList.remove("ocultar")
+            btnUltima.onclick = () => {
+                seccion.className = "ocultar"
+                for (let i = 0; i < localStorage.length; i++) {
+                    alert(`${ localStorage.getItem("ultima simulacion") } total con interes:${ parseInt(inputMonto.value) + interes(cuotas.value) } por mes:${ interes(cuotas.value).toFixed(2) }`);
+                }
+            window.location.reload();
+            }
+            }
         }
-}
+
+        
 
 
-//llamar funciones
-mostrar ();
 mostrarDatos();

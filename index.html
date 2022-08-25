@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/index.js"></script>
     <title>Document</title>
 </head>
@@ -21,7 +22,7 @@
             <article>
                 <div>
                     <label for="userName"></label>
-                    <input type="text" name="userName" id="userName" placeholder="Ingrese el nombre">   
+                    <input type="text" name="userName" id="userName" placeholder="Ingrese el nombre" >   
                 </div>
                 <div>
                     <label for="userSurname"></label>
@@ -29,22 +30,26 @@
                 </div>
                 <div>
                     <label for="userMonto"></label>
-                    <input type="number" name="userMonto" id="userMonto" placeholder="Ingrese el monto: ej 1000">
+                    <input type="number" name="userMonto" id="userMonto" placeholder="Ingrese el monto: ej 1000" min="1000" max="1000000">
                 </div>
                 <div>
                     <label for="userCuotas">Cuotas</label>
                     <select name="userCuotas" id="userCuotas">
-                        <option value="" disabled selected> Ninguna </option>
+                        <option disabled selected> Ninguna </option>
                     </select>
                 </div>
                 <div>
                     <p>Presione Enter o haga click en calcular</p>
                     <button id="btnCalcular">calcular</button>
+                    
                 </div>
             </article>
         </section>
         <section id="mostrar">
-
+            
+        </section>
+        <section>
+            <button id="btnUltima" class="ocultar">ultima simulacion</button>
         </section>
     </main>
     <footer>
