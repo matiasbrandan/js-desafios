@@ -82,30 +82,23 @@ function interes (){
 
 
 
-function mostrarDatos() {
-        let seccion = document.getElementById("mostrar")
-        let divDatos = document.getElementById("datosGuardados")
-        btnCalcular.onclick = () => {
-            seccion.innerHTML = `<p>nombre:${inputName.value}</p>
-                                    <p>apellido:${inputSurname.value}</p>
-                                    <p>monto:${inputMonto.value}</p>
-                                    <p>cuotas:${cuotas.value}</p>
-                                    <p>total con interes:${parseInt(inputMonto.value) + interes(cuotas.value)}</p>
-                                    <p>por mes:${interes(cuotas.value).toFixed(2)}`
-            guardarDatos ();
-            localStorage.setItem ("ultima simulacion", JSON.stringify(datosGuardados));
-            btnUltima.classList.remove("ocultar")
-            btnUltima.onclick = () => {
-                seccion.className = "ocultar"
-                for (let i = 0; i < localStorage.length; i++) {
-                    alert(`${ localStorage.getItem("ultima simulacion") } total con interes:${ parseInt(inputMonto.value) + interes(cuotas.value) } por mes:${ interes(cuotas.value).toFixed(2) }`);
-                }
-            window.location.reload();
+let seccion = document.getElementById("mostrar")
+let divDatos = document.getElementById("datosGuardados")
+btnCalcular.onclick = () => {
+    seccion.innerHTML = `<p>nombre:${inputName.value}</p>
+                        <p>apellido:${inputSurname.value}</p>
+                        <p>monto:${inputMonto.value}</p>
+                        <p>cuotas:${cuotas.value}</p>
+                        <p>total con interes:${parseInt(inputMonto.value) + interes(cuotas.value)}</p>
+                        <p>por mes:${interes(cuotas.value).toFixed(2)}`
+    guardarDatos ();
+    localStorage.setItem ("ultima simulacion", JSON.stringify(datosGuardados));
+    btnUltima.classList.remove("ocultar")
+    btnUltima.onclick = () => {
+        seccion.className = "ocultar"
+        for (let i = 0; i < localStorage.length; i++) {
+            alert(`${ localStorage.getItem("ultima simulacion") } total con interes:${ parseInt(inputMonto.value) + interes(cuotas.value) } por mes:${ interes(cuotas.value).toFixed(2) }`);
             }
+        window.location.reload();
             }
-        }
-
-        
-
-
-mostrarDatos();
+}
