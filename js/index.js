@@ -9,6 +9,7 @@ let btnUltima = document.getElementById ("btnUltima");
 let datosJson;
 
 const datosGuardados = [];
+const recuperados = [];
 const opcionesDeCuotas = [6, 12, 18, 24, 30, 36];
 
 
@@ -89,16 +90,28 @@ btnCalcular.onclick = () => {
                         <p>apellido:${inputSurname.value}</p>
                         <p>monto:${inputMonto.value}</p>
                         <p>cuotas:${cuotas.value}</p>
-                        <p>total con interes:${parseInt(inputMonto.value) + interes(cuotas.value)}</p>
+                        <p>total con interes:${parseFloat(inputMonto.value) + (interes(cuotas.value)).toFixed(2)}</p>
                         <p>por mes:${interes(cuotas.value).toFixed(2)}`
     guardarDatos ();
-    localStorage.setItem ("ultima simulacion", JSON.stringify(datosGuardados));
+    let guardados = localStorage.setItem ("simulaciones", JSON.stringify(datosGuardados));
     btnUltima.classList.remove("ocultar")
-    btnUltima.onclick = () => {
-        seccion.className = "ocultar"
-        for (let i = 0; i < localStorage.length; i++) {
-            alert(`${ localStorage.getItem("ultima simulacion") } total con interes:${ parseInt(inputMonto.value) + interes(cuotas.value) } por mes:${ interes(cuotas.value).toFixed(2) }`);
-            }
-        window.location.reload();
-            }
+    let almacenados = JSON.parse(localStorage.getItem("simulaciones"))
+    for (let i = 0; i < almacenados.length ; i++){
+        let nombre = almacenados[i].nombre;
+        let apellido = almacenados[i].apellido;
+        let monto = almacenados[i].monto;
+        let cuotas = almacenados[i].cuotas;
+        recuperados.push( new datos(nombre,apellido,monto,cuotas))
+    }
+    }
+    
+btnUltima.onclick = () => {
+    seccion.className = "ocultar";
+    for (let i = 0; i< recuperados.length;i++){
+        divDatos.innerHTML += `<p>nombre:${recuperados[i].nombre}</p>
+                            <p>apellido:${recuperados[i].surname}</p>
+                            <p>monto:${recuperados[i].monto}</p>
+                            <p>cuotas:${recuperados[i].cuotas}</p>
+                            `;
+    }
 }
