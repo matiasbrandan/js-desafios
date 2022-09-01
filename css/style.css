@@ -1,3 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navConteiner{
+    display: flex;
+    margin: 15px;
+    justify-items: center;
+    justify-content: center;
+}
+.navConteiner__titulo{
+    font-size:xx-large;
+    font-family:sans-serif;
+}
+.h2Conteiner {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+.inputConteiner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7,3rem);
+    align-items: center;
+    justify-items: center;
+    grid-gap: 1rem;
+    grid-template-areas:"nombre"
+                        "apellido"
+                        "moneda"
+                        "monto"
+                        "barra"
+                        "cuotas"
+                        "calcular";
+}
+.inputConteiner__name{
+    grid-area: nombre;
+}
+.inputConteiner__surname{
+    grid-area: apellido;
+}
+.inputConteiner__divisas{
+    grid-area: moneda;
+}
+.inputConteiner__monto{
+    grid-area: monto;
+    padding: 10px;
+}
+.inputConteiner__barra{
+    grid-area: barra;
+}
+.inputConteiner__cuotas{
+    grid-area: cuotas;
+}
+.inputConteiner__calcular{
+    grid-area: calcular;
+}
+#userName, #userSurname, #userDivisas, #userMonto, #userCuotas,#btnCalcular{
+    height: 2rem;
+    width: 20rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #0099ff;
+}
+#proMonto{
+    height: 2rem;
+    width: 20rem;    
+}
+#userName:focus, #userSurname:focus, #userDivisas:focus, #userMonto:focus, #userCuotas:focus,#btnCalcular:focus{
+    outline: none;
+}
+#mostrar,#datosGuardados,.indice,.indicee{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(6,11.1rem);
+    margin-top: 10px;
+    justify-content: center;
+}
+
+
+#mostrar p,.datosGuardados__p, .indice p,.indicee p{
+    width: 11rem;
+    text-align: center;
+    border: 1px solid #0099ff;
+    padding: 5px 0;
+}    
+
+
+
 .ocultar {
     display: none;
 }

@@ -1,42 +1,67 @@
+// const monedas = [
+//     {id: "peso Argentino", valor: 1},
+//     {id: "peso Uruguayo", valor:0.29},
+//     {id: "euro", valor: 0.0072},
+//     {id: "dolar", valor: 0.0072},
+//     {id: "real", valor: 0.036},
+//     {id: "bolivar", valor: 0.057}
+// ];
+// let selecDivisas = document.getElementById("userDivisas");
+// for (let i = 0 ; i < monedas.length; i++) { 
+//     let divisasArray = [];
+//     divisasArray.push(monedas[i].id) ;
+//     for (let opciones of divisasArray ) {
+//         let option = document.createElement("option");
+//         option.innerHTML=opciones;
+//         selecDivisas.appendChild(option);
+//     }
+// }
 
-class datosDelSolicitante {
-    constructor (nombre,apellido,monto,cuotas){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.monto = monto;
-        this.cuotas = cuotas;
+// function comparacion (){
+//     for (igualA of monedas ){
+//         switch (selecDivisas.value) {
+//                     case "peso Argentino":
+//                         let pesoArg =;
+//                         return pesoArg;
+//                     case "peso Uruguayo":
+//                         let pesoUru =;
+//                         return pesoUru;
+//                     case "euro":
+//                         let euro =;
+//                         return euro ;
+//                     case "dolar":
+//                         let dolar =;
+//                         return dolar;
+//                     case "real":
+//                         let real = ;
+//                         return real ;
+//                     case "bolivar":
+//                         let bolivar = ;
+//                         return bolivar;
+//                     default:
+//                         break
+//                 }
+//     }
+// }
+function interesDolar (){
+    if (selecDivisas.value == "dolar"){
+        for (porMes of opcionesDeCuotas){
+        switch (cuotas.value) {
+                    case "6":
+                        let primera =inputMonto.value * 10;
+                        return primera / 6;
+                    case "12":
+                        let segunda = inputMonto.value * 10;
+                        return segunda / 12;
+                    case "24":
+                        let cuarta = inputMonto.value * 10;
+                        return cuarta / 24;
+                    case "36":
+                        let sexta = inputMonto.value * 10;
+                        return sexta / 36;
+                    default:
+                        break
+                }
     }
-
-}
-const solicitante = [];
-function nuevoSolicitante () {
-    let nombre = prompt("ingrese su nombre:");
-    let apellido = prompt("Ingrese su apellido:");
-    let monto = parseInt(prompt("Ingresa el monto:"));
-    alert ("elija la cantidad de cuotas de las siguentes opciones")
-    let cuotas = prompt ("6 - 12 - 18 - 24 -30 -36");
-        solicitante.push(new datosDelSolicitante(nombre, apellido, monto, cuotas))
-        console.table(solicitante)
-}
-nuevoSolicitante ()
-
-const almacenadoss = localStorage.setItem("listaProductos", JSON.stringify(solicitante));
-
-const almacenados = JSON.parse(localStorage.getItem("listaProductos"));
-const productoss = [];
-let seccion = document.getElementById("mostrar")
-for (let i = 0; i< almacenados.length ; i++){
-    let nombre = almacenados[i].nombre;
-    let apellido = almacenados[i].apellido;
-    let monto = almacenados[i].monto;
-    let cuotas = almacenados[i].cuotas;
-    productoss.push( new datosDelSolicitante(nombre,apellido,monto,cuotas))
-}
-
-for (let i = 0; i< productoss.length;i++){
-    seccion.innerHTML = `<p>nombre:${productoss[i].nombre}</p>
-                        <p>apellido:${productoss[i].apellido}</p>
-                        <p>monto:${productoss[i].monto}</p>
-                        <p>cuotas:${productoss[i].cuotas}</p>
-                        `;
+    }
 }

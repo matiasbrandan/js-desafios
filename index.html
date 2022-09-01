@@ -4,58 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/index.js"></script>
-    <!-- <script defer src="asd.js"></script> -->
-    <title>Document</title>
+    <title>Prestamos Personales</title>
 </head>
 <body>
     <head>
-        <nav>
-            <h1>Simulador de Prestamos Personales</h1>
+        <nav class="navConteiner">
+            <h1 class="navConteiner__titulo">Simulador de Prestamos Personales</h1>
         </nav>
     </head>
     <main>
-        <section>
-            <p>Bienvenido al simular de prestamos personales.</p>
+        <section class="h2Conteiner">
+            <h2>Bienvenido al simular de prestamos personales.</h2>
         </section>
         <section>
-            <article>
-                <div>
+            <article class="inputConteiner">
+                <div class="inputConteiner__name">
                     <label for="userName"></label>
-                    <input type="text" name="userName" id="userName" placeholder="Ingrese el nombre" >   
+                    <input type="text" name="userName" id="userName" placeholder="Ingrese el nombre">   
                 </div>
-                <div>
+                <div class="inputConteiner__surname">
                     <label for="userSurname"></label>
                     <input type="text" name="userSurname" id="userSurname" placeholder="Ingrese el apellido">
                 </div>
-                <div>
-                    <label for="userMonto"></label>
-                    <input type="number" name="userMonto" id="userMonto" placeholder="Ingrese el monto: ej 1000" min="1000" max="1000000">
+                <div class="inputConteiner__divisas">
+                    <p>Seleccione el tipo de moneda</p>
+                    <select name="userDivisas" id="userDivisas">
+                        <option disabled selected>Ninguna</option>
+                    </select>
                 </div>
-                <div>
-                    <label for="userCuotas">Cuotas</label>
+                <div class="inputConteiner__monto">
+                    <label for="userMonto"></label>
+                    <input type="number" name="userMonto" id="userMonto" min="1000" max="10000000000">
+                    
+                </div>
+                <div class="inputConteiner__barra">
+                    <progress id="proMonto" value="0" ></progress>
+                </div>
+                <div class="inputConteiner__cuotas">
+                    <p>Seleccione cantidad de cuotas</p>
                     <select name="userCuotas" id="userCuotas">
                         <option disabled selected> Ninguna </option>
                     </select>
                 </div>
                 <div>
-                    <p>Presione Enter o haga click en calcular</p>
-                    <button id="btnCalcular">calcular</button>
-                    
+                    <button class="inputConteiner__calcular" id="btnCalcular">calcular</button>
                 </div>
             </article>
         </section>
+        <section id="indice" class="ocultar indice "> 
+            <p class="mostrar__nombree">NOMBRE</p>
+            <p class="mostrar__apellidoo">APELLIDO</p>
+            <p class="mostrar__montoo">MONTO</p>
+            <p class="mostrar__cuotass">CUOTAS</p>
+            <p class="mostrar__tci">TOTAL CON INTERES</p>
+            <p class="mostrar__pm">POR MES</p>
+        </section>
         <section id="mostrar">
-            
         </section>
         <section>
-            <button id="btnUltima" class="ocultar">ultima simulacion</button>
-            <div id="datosGuardados"></div>
+            <button id="btnUltima" class="ocultar">mostrar simulaciones</button>
         </section>
+        <section id="indicee" class="ocultar indicee "> 
+            <p class="mostrar__nombree">NOMBRE</p>
+            <p class="mostrar__apellidoo">APELLIDO</p>
+            <p class="mostrar__montoo">MONTO</p>
+            <p class="mostrar__cuotass">CUOTAS</p>
+            <p class="mostrar__tci">TOTAL CON INTERES</p>
+            <p class="mostrar__pm">POR MES</p>
+        </section>
+        <section>
+            <div id="datosGuardados"></div>
+        </section>  
     </main>
     <footer>
-        
+        <table>
+            <td>
+                <th></th>
+            </td>
+        </table>
     </footer>
+
+    <!--librerias -->
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
