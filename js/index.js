@@ -11,7 +11,8 @@ let divDatos = document.getElementById("datosGuardados");
 let selecDivisas = document.getElementById("userDivisas");
 let proMonto = document.getElementById("proMonto") ;
 let indice = document.getElementById("indice");
-let indicee = document.getElementById("indicee")
+let indicee = document.getElementById("indicee");
+let btnSubmit = document.getElementById("btnsubmit");
 
 let datosJson;
 const datosGuardados = [];
@@ -176,8 +177,6 @@ function interes (){
     
 }
 
-
-
 btnCalcular.onclick = () => {
     if (inputName.value !== "" && inputSurname.value !== ""){
         if (inputMonto.value !== ""){
@@ -192,8 +191,9 @@ btnCalcular.onclick = () => {
                         <p class="mostrar__pC">${cuotas.value}</p>
                         <p class="mostrar__pT">${suma().toFixed(2)}</p>
                         <p class="mostrar__pP">${interes(cuotas.value).toFixed(2)}</p>`
-    btnUltima.classList.remove("ocultar")
-    indice.classList.remove("ocultar")
+    btnUltima.classList.remove("ocultar");
+    btnSubmit.classList.remove("ocultar");
+    indice.classList.remove("ocultar");
         } else swal({
             text: "NO HA INGRESADO NINGUN MONTO",icon: "warning",
         });
@@ -201,7 +201,7 @@ btnCalcular.onclick = () => {
         text: "COMPLETE TODOS LOS CAMPOS", icon: "warning",
     })
     guardarDatos ();
-    let guardados = localStorage.setItem ("simulaciones", JSON.stringify(datosGuardados));
+    guardados = localStorage.setItem ("simulaciones", JSON.stringify(datosGuardados));
     let almacenados = JSON.parse(localStorage.getItem("simulaciones"))
     for (let i = 0; i <= almacenados.length ; i++){
         let nombre = almacenados[i].nombre ;
@@ -223,4 +223,19 @@ btnUltima.onclick = () => {
                             <p class="datosGuardados__p">${interes(cuotas.value).toFixed(2)}</p>
                             `;
     }
+}
+
+btnSubmit.onclick = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts',
+        {
+            method: "POST",
+            body: JSON.stringify(recuperados),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => swal({
+            text: "SE A ENVIADO CON EXITO",icon: "success",
+        }) )
 }
