@@ -176,7 +176,7 @@ function interes (){
     }
     
 }
-
+a
 btnCalcular.onclick = () => {
     if (inputName.value !== "" && inputSurname.value !== ""){
         if (inputMonto.value !== ""){
@@ -200,11 +200,10 @@ btnCalcular.onclick = () => {
     } else swal({
         text: "COMPLETE TODOS LOS CAMPOS", icon: "warning",
     })
-    guardarDatos ();
     guardados = localStorage.setItem ("simulaciones", JSON.stringify(datosGuardados));
     let almacenados = JSON.parse(localStorage.getItem("simulaciones"))
     for (let i = 0; i <= almacenados.length ; i++){
-        let nombre = almacenados[i].nombre ;
+        let nombre = almacenados[i].nombre;
         let apellido = almacenados[i].surname;
         let monto = almacenados[i].monto;
         let cuotas = almacenados[i].cuotas;
