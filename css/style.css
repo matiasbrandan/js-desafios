@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: rgb(152, 150, 150);
+}
 .navConteiner{
     display: flex;
     margin: 15px;
@@ -18,16 +21,16 @@
     justify-content: center;
     margin: 15px;
 }
-
 .inputConteiner {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(7,3rem);
+    grid-template-rows: repeat(8,4rem);
     align-items: center;
     justify-items: center;
     grid-gap: 1rem;
     grid-template-areas:"nombre"
                         "apellido"
+                        "pais"
                         "moneda"
                         "monto"
                         "barra"
@@ -39,6 +42,9 @@
 }
 .inputConteiner__surname{
     grid-area: apellido;
+}
+.inputConteiner__pais{
+    grid-area: pais;
 }
 .inputConteiner__divisas{
     grid-area: moneda;
@@ -56,9 +62,9 @@
 .inputConteiner__calcular{
     grid-area: calcular;
 }
-#userName, #userSurname, #userDivisas, #userMonto, #userCuotas,#btnCalcular{
-    height: 2rem;
-    width: 20rem;
+#userName, #userSurname, #userDivisas, #userMonto, #userCuotas,#btnCalcular,#btnUltima,#btnsubmit,#userPais{
+    height: 3rem;
+    width: 25rem;
     border: none;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #0099ff;
@@ -67,27 +73,33 @@
     height: 2rem;
     width: 20rem;    
 }
-#userName:focus, #userSurname:focus, #userDivisas:focus, #userMonto:focus, #userCuotas:focus,#btnCalcular:focus{
+#userName:focus, #userSurname:focus, #userDivisas:focus, #userMonto:focus, #userCuotas:focus,#btnCalcular:focus,#userPais:focus{
     outline: none;
 }
 #mostrar,#datosGuardados,.indice,.indicee{
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(6,11.1rem);
+    grid-template-columns: repeat(5,11.1rem);
     margin-top: 10px;
     justify-content: center;
 }
-
-
 #mostrar p,.datosGuardados__p, .indice p,.indicee p{
     width: 11rem;
     text-align: center;
     border: 1px solid #0099ff;
     padding: 5px 0;
-}    
-
-
-
+    border-radius: 20px;
+}
+#tituloDatosGuardados{
+    text-align: center;
+}
+.inputConteiner__pais p, .inputConteiner__cuotas p, .inputConteiner__divisas p,#userName::placeholder,#userSurname::placeholder{
+    font-size: 1.5em;
+    text-align: center;
+}
+#btnUltima,#btnCalcular,#userCuotas,#userDivisas,#userPais{
+    font-size: 1.2rem;
+}
 .ocultar {
     display: none;
 }
