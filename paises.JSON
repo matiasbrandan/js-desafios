@@ -1,0 +1,15 @@
+[
+    {"nombre":"Argentina", "id":1},
+    {"nombre":"Bolivia", "id":2},
+    {"nombre":"Brasil", "id":3},
+    {"nombre":"Chile", "id":4},
+    {"nombre":"Colombia", "id":5},
+    {"nombre":"Ecuador", "id":6},
+    {"nombre":"Guyana", "id":7},
+    {"nombre":"Paraguay", "id":8},
+    {"nombre":"Perú", "id":9},
+    {"nombre":"Surinam", "id":10},
+    {"nombre":"Trinidad y Tobago", "id":11},
+    {"nombre":"Uruguay", "id":12},
+    {"nombre":"Venezuela", "id":13}
+]

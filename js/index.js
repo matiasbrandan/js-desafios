@@ -1,5 +1,4 @@
 //VARIABLES
-
 let inputName = document.getElementById ("userName");
 let inputSurname = document.getElementById("userSurname");
 let inputMonto = document.getElementById ("userMonto") ;
@@ -13,12 +12,13 @@ let proMonto = document.getElementById("proMonto") ;
 let indice = document.getElementById("indice");
 let indicee = document.getElementById("indicee");
 let btnSubmit = document.getElementById("btnsubmit");
+let tituloDG = document.getElementById("tituloDatosGuardados");
+let selecPais = document.getElementById("userPais");
 
-let datosJson;
 const datosGuardados = [];
-const recuperados = [];
 const opcionesDeCuotas = [6, 12,24,36];
 const monedas = ["peso Argentino", "euro", "dolar", "real"];
+let arrSinDuplicaciones;
 
 for (opciones of opcionesDeCuotas) {
     let option = document.createElement("option");
@@ -30,8 +30,16 @@ for (let opciones of monedas ) {
     option.innerHTML=opciones;
     selecDivisas.appendChild(option);
 }
-
-
+fetch ("/paises.JSON")
+    .then ((response)=> response.json())
+    .then ((data)=> {
+        for(let i=0;i<=data.length;i++){
+            let paises = data[i].nombre;
+            let option = document.createElement("option");
+            option.innerHTML=paises;
+            selecPais.append(option);
+        }
+    })
 inputName.onchange = () => {
     inputName.value;
 }
@@ -74,7 +82,7 @@ selecDivisas.onchange = () => {
 }
 
 
-function datosUser() { if (inputName.value !== "" && inputSurname.value !== "" && inputMonto.value >= 1000 && cuotas.value !== "Ninguna" ){ 
+function datosUser() {if (inputName.value !== "" && inputSurname.value !== "" && inputMonto.value >= 1000 && cuotas.value !== "Ninguna" && selecDivisas.value !== "Ninguna" ){ 
         return true
     } else {
         return false
@@ -83,16 +91,17 @@ function datosUser() { if (inputName.value !== "" && inputSurname.value !== "" &
 
 function guardarDatos () {
     if (datosUser ()){
-        datosGuardados.push (new datos (inputName.value, inputSurname.value, inputMonto.value, cuotas.value))
+        datosGuardados.push (new datos (inputName.value, inputSurname.value, inputMonto.value, cuotas.value, selecDivisas.value))
     }
 }
 
 class datos{
-    constructor(nombre, surname, monto, cuotas) {
+    constructor(nombre, surname, monto, cuotas, divisas) {
         this.nombre = nombre;
         this.surname   = surname;
         this.monto  = monto;
         this.cuotas = cuotas;
+        this.divisas = divisas;
     }
 }
 
@@ -179,57 +188,61 @@ function interes (){
 
 btnCalcular.onclick = () => {
     if (inputName.value !== "" && inputSurname.value !== ""){
-        if (inputMonto.value !== ""){
-            let sumaa;
-            let suma = () =>{
-                sumaa =(parseFloat(inputMonto.value)) + (interes(cuotas.value));
-                return sumaa
-            } ;
     seccion.innerHTML = `<p class="mostrar__pN">${inputName.value}</p>
                         <p class="mostrar__pA">${inputSurname.value}</p>
                         <p class="mostrar__pM">${selecDivisas.value}:${inputMonto.value}</p>
                         <p class="mostrar__pC">${cuotas.value}</p>
-                        <p class="mostrar__pT">${suma().toFixed(2)}</p>
                         <p class="mostrar__pP">${interes(cuotas.value).toFixed(2)}</p>`
-    btnUltima.classList.remove("ocultar");
     btnSubmit.classList.remove("ocultar");
     indice.classList.remove("ocultar");
-        } else swal({
+        } else if (inputMonto.value == "") {
+            swal({
             text: "NO HA INGRESADO NINGUN MONTO",icon: "warning",
-        });
+            });
     } else swal({
         text: "COMPLETE TODOS LOS CAMPOS", icon: "warning",
     })
     guardarDatos ();
     guardados = localStorage.setItem ("simulaciones", JSON.stringify(datosGuardados));
-    let almacenados = JSON.parse(localStorage.getItem("simulaciones"))
-    for (let i = 0; i <= almacenados.length ; i++){
-        let nombre = almacenados[i].nombre ;
-        let apellido = almacenados[i].surname;
-        let monto = almacenados[i].monto;
-        let cuotas = almacenados[i].cuotas;
-        recuperados.push( new datos(nombre,apellido,monto,cuotas))
-    }
-}
     
-btnUltima.onclick = () => {
-    indicee.classList.remove("ocultar")
-    for (let i = 0; i < recuperados.length;i++){
-        divDatos.innerHTML += `<p class="datosGuardados__p">${recuperados[i].nombre}</p>
-                            <p class="datosGuardados__p">${recuperados[i].surname}</p>
-                            <p class="datosGuardados__p">${selecDivisas.value}:${recuperados[i].monto}</p>
-                            <p class="datosGuardados__p">${recuperados[i].cuotas}</p>
-                            <p class="datosGuardados__p">${parseFloat(inputMonto.value) + (interes(cuotas.value))}</p>
-                            <p class="datosGuardados__p">${interes(cuotas.value).toFixed(2)}</p>
-                            `;
-    }
+}
+
+
+btnUltima.onmousedown = () => {
+    
+    let set = new Set( datosGuardados.map( JSON.stringify ) )
+    arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
+    if (inputName.value !== "" && inputSurname.value !== "" && inputMonto.value !== "" && cuotas.value !== "Ninguna" && selecDivisas.value !== "Ninguna"){
+        indicee.classList.remove("ocultar");  
+        tituloDG.classList.remove("ocultar");
+        for (let i = 0; i < arrSinDuplicaciones.length;i++){
+        divDatos.innerHTML +=   `   
+                                    <p class="datosGuardados__p">${arrSinDuplicaciones[i].nombre}</p>
+                                    <p class="datosGuardados__p">${arrSinDuplicaciones[i].surname}</p>
+                                    <p class="datosGuardados__p">${arrSinDuplicaciones[i].divisas}:${arrSinDuplicaciones[i].monto}</p>
+                                    <p class="datosGuardados__p">${arrSinDuplicaciones[i].cuotas}</p>
+                                    <p class="datosGuardados__p">${interes(cuotas.value).toFixed(2)}</p>
+                                `;
+                                btnUltima.onmouseup = () => {
+                                    for (let i=0;i<= datosGuardados.length;i++){
+                                        datosGuardados.splice(0,i);
+                                        datosGuardados.shift()
+                                    }
+                                }
+        
+    }} else 
+        swal({
+            text: "NO HA CALCULADO NINGUNA SIMULACION",icon: "warning",
+        });
+    
+
 }
 
 btnSubmit.onclick = () => {
     fetch('https://jsonplaceholder.typicode.com/posts',
         {
             method: "POST",
-            body: JSON.stringify(recuperados),
+            body: JSON.stringify(datosGuardados),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },

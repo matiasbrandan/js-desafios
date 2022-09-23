@@ -15,11 +15,11 @@
             <h1 class="navConteiner__titulo">Simulador de Prestamos Personales</h1>
         </nav>
     </head>
-    <main>
+    <main class="mainConteiner">
         <section class="h2Conteiner">
             <h2>Bienvenido al simular de prestamos personales.</h2>
         </section>
-        <section>
+        <section class="mainConteiner__input">
             <article class="inputConteiner">
                 <div class="inputConteiner__name">
                     <label for="userName"></label>
@@ -28,6 +28,12 @@
                 <div class="inputConteiner__surname">
                     <label for="userSurname"></label>
                     <input type="text" name="userSurname" id="userSurname" placeholder="Ingrese el apellido">
+                </div>
+                <div class="inputConteiner__pais">
+                    <p>Seleccione su Pais</p>
+                    <select name="userPais" id="userPais">
+                        <option disabled selected>Ninguna</option>
+                    </select>
                 </div>
                 <div class="inputConteiner__divisas">
                     <p>Seleccione el tipo de moneda</p>
@@ -52,35 +58,40 @@
                 <div>
                     <button class="inputConteiner__calcular" id="btnCalcular">calcular</button>
                 </div>
+                <div>
+                    <button id="btnUltima">mostrar simulaciones</button>
+                    <input type="submit" value="envias" class="ocultar" id="btnsubmit">
+                </div>
             </article>
         </section>
-        <section id="indice" class="ocultar indice "> 
+        <section id="indice" class="ocultar indice"> 
             <p class="mostrar__nombree">NOMBRE</p>
             <p class="mostrar__apellidoo">APELLIDO</p>
             <p class="mostrar__montoo">MONTO</p>
             <p class="mostrar__cuotass">CUOTAS</p>
-            <p class="mostrar__tci">TOTAL CON INTERES</p>
             <p class="mostrar__pm">POR MES</p>
         </section>
-        <section id="mostrar">
+        <section id="mostrar" class="mainConteiner__P">
         </section>
-        <section>
-            <button id="btnUltima" class="ocultar">mostrar simulaciones</button>
-            <input type="submit" value="envias" class="ocultar" id="btnsubmit">
+        <section class="mainConteiner__inpuSubmit">
         </section>
-        <section id="indicee" class="ocultar indicee "> 
+        <div>
+            <h3 class="ocultar" id="tituloDatosGuardados"> Estas son tus ultimas simulaciones</h3>
+        </div>
+        <section id="indicee" class="ocultar indicee"> 
             <p class="mostrar__nombree">NOMBRE</p>
             <p class="mostrar__apellidoo">APELLIDO</p>
             <p class="mostrar__montoo">MONTO</p>
             <p class="mostrar__cuotass">CUOTAS</p>
-            <p class="mostrar__tci">TOTAL CON INTERES</p>
             <p class="mostrar__pm">POR MES</p>
         </section>
-        <section>
+        <section class="mainConteiner__datosGuardados">
+            
             <div id="datosGuardados"></div>
-        </section>  
+        </section>
     </main>
     <footer>
+        
     </footer>
 
     <!--librerias -->
